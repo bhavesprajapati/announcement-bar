@@ -1,62 +1,65 @@
 <div class="announcement-slider">
-    <div class="announcement-track">
-        <span>0% discount on your order </span>
-        <span>•</span>
-        <span>A question? Visit our contact page to send us a message</span>
-        <span>•</span>
-        <span>New Collaboration: Master & Dynamic x Paris Saint-Germain </span>
-        <span>•</span>
-        <span>Free standard shipping on all orders</span>
-        <span>•</span>
-        <span>Discount: Use the code IMPACT20 to receive a 20% discount on your order </span>
-        <span>•</span>
-        <span>Exclusive offers for members<span>
+  <div class="announcement-track">
+    {% for item in section.settings.announcements %}
+      <span>{{ item }}</span>
       <span>•</span>
-        <span>Limited time free returns </span>
-        <span>•</span>
-        <span>Shop our latest collection now</span>
-        <span>•</span>
-    </div>
-    <div class="announcement-track clone">
-        <span>0% discount on your order </span><span>•</span>
-        <span>A question? Visit our contact page to send us a message </span><span>•</span>
-        <span>New Collaboration: Master & Dynamic x Paris Saint-Germain </span><span>•</span>
-        <span>Free standard shipping on all orders </span><span>•</span>
-        <span>Discount: Use the code IMPACT20 to receive a 20% discount on your order </span><span>•</span>
-        <span>Exclusive offers for members </span><span>•</span>
-        <span>Limited time free returns </span><span>•</span>
-        <span>Shop our latest collection now </span><span>•</span>
-    </div>
+    {% endfor %}
+  </div>
+  <div class="announcement-track clone">
+    {% for item in section.settings.announcements %}
+      <span>{{ item }}</span>
+      <span>•</span>
+    {% endfor %}
+  </div>
 </div>
 
 <style>
-    .announcement-slider {
-        overflow: hidden;
-        white-space: nowrap;
-        position: relative;
-        background: #000;
-        color: #fff;
-    }
-    
-    .announcement-track {
-        display: inline-block;
-        white-space: nowrap;
-        animation: ticker 30s linear infinite;
-    }
-    
-    .announcement-track span {
-        display: inline-block;
-        padding: 0 30px;
-        font-weight: bold;
-        font-size: 14px;
-    }
-    
-    @keyframes ticker {
-        0% {
-            transform: translateX(0);
-        }
-        100% {
-            transform: translateX(-100%);
-        }
-    }
+.announcement-slider {
+  overflow: hidden;
+  white-space: nowrap;
+  position: relative;
+  background: #000;
+  color: #fff;
+}
+
+.announcement-track {
+  display: inline-block;
+  white-space: nowrap;
+  animation: ticker 30s linear infinite;
+}
+
+.announcement-track span {
+  display: inline-block;
+  padding: 0 30px;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+@keyframes ticker {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
 </style>
+
+{% schema %}
+{
+  "name": "Announcement Slider",
+  "settings": [
+    {
+      "type": "textarea",
+      "id": "announcements",
+      "label": "Announcement Messages (separated by new lines)",
+      "default": "0% discount on your order\nA question? Visit our contact page\nNew Collaboration: PSG\nFree standard shipping"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Announcement Slider"
+    }
+  ]
+}
+{% endschema %}
